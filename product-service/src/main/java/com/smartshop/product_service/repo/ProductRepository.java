@@ -12,7 +12,7 @@ import com.smartshop.product_service.entity.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
-	List<Product> findByCategory(String category);
+	List<Product> findByProductCategory(String category);
 
     List<Product> findByProductNameContainingIgnoreCase(String name);
 

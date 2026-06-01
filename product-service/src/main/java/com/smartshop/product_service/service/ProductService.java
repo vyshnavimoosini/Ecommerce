@@ -43,7 +43,7 @@ public class ProductService {
 	
 	public List<Product> findByCategory(String category){
 		
-		return productRepository.findByCategory(category);
+		return productRepository.findByProductCategory(category);
 	}
 
 	public List<Product> findAll(){
