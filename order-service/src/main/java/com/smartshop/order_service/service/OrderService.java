@@ -71,4 +71,10 @@ public class OrderService {
 		return orderRepository.save(order);
 
 	}
+	
+	public String deleteOrder(Long orderId) {
+		orderRepository.deleteById(orderId);
+		
+		return "Order Deleted";
+	}
 }

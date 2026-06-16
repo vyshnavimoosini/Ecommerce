@@ -53,15 +53,15 @@ public class UserController {
 		return userService.findByEmailId(emailId);
 	}
 
-	@PutMapping
+	@PutMapping("/{id}")
 	public User updateUserDetails(@PathVariable Long id, @RequestBody User userDetails) {
 
 		return userService.updateUserDetails(id, userDetails);
 	}
 
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public String deleteByUserId(@PathVariable long id) {
-
+         userService.deleteByUserId(id);
 		return "User is deleted";
 	}
 

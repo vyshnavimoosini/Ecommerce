@@ -81,5 +81,10 @@ public class InventoryService {
 
 		return inventoryRepo.save(inventory);
 	}
+	
+	public String deleteInventory(Long inventoryId) {
+		inventoryRepo.deleteById(inventoryId);
+		return "Inventory Deleted";
+	}
 
 }

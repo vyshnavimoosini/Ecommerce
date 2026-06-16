@@ -2,6 +2,7 @@ package com.smartshop.user_service.entity;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	String name;
+	
+	@Column(unique = true)
 	String emailId;
 	String password;
 	String role;

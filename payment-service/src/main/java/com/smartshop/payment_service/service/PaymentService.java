@@ -54,4 +54,15 @@ public class PaymentService {
 		payment.setPaymentStatus("REFUNDED");
 		return paymentRepository.save(payment);
 	}
+
+	public List<Payment> findAll() {
+		// TODO Auto-generated method stub
+		return paymentRepository.findAll();
+	}
+	
+	public String deleteByPaymentId(Long paymentId) {
+		paymentRepository.deleteById(paymentId);
+		return "Payment deleted";
+		
+	}
 }

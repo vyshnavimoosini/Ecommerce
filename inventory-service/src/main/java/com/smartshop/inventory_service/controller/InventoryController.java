@@ -3,6 +3,7 @@ package com.smartshop.inventory_service.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +44,7 @@ public class InventoryController {
 		return inventoryService.findByReservedStock(reservedStock);
 	}
 
-	@GetMapping("{productId}")
+	@GetMapping("/product-id/{productId}")
 	public Inventory findByProductId(@PathVariable Long productId) {
 
 		return inventoryService.findByProductId(productId);
@@ -85,5 +86,10 @@ public class InventoryController {
 		return inventoryService.releaseStock(productId, quantity);
 	}
 
+    @DeleteMapping("/{inventoryId}")
+    public String deleteInventory(@PathVariable Long inventoryId) {
+    	inventoryService.deleteInventory(inventoryId);
+		return "Inventory Deleted";
+	}
 
 }

@@ -3,6 +3,7 @@ package com.smartshop.payment_service.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +57,11 @@ public class PaymentController {
 		return paymentService.findByOrderId(orderId);
 	}
 	
+	@GetMapping
+	public List<Payment> findAll() {
+		return paymentService.findAll();
+	}
+	
 	@PutMapping("/{paymentId}")
 	public Payment updatePaymentStatus(@PathVariable Long paymentId, @RequestBody Payment paymentDetails) {
 	
@@ -68,6 +74,13 @@ public class PaymentController {
 	public Payment processRefund(@PathVariable Long paymentId) {
 		
 		return paymentService.processRefund(paymentId);
+	}
+	
+	@DeleteMapping("/{paymentId}")
+	public String deleteByPaymentId(@PathVariable Long paymentId) {
+		paymentService.deleteByPaymentId(paymentId);
+		return "Payment deleted";
+		
 	}
 
 }
