@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -17,10 +19,13 @@ import lombok.Data;
 public class Inventory {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@NotNull
 	private long inventoryId;
 	private long productId;
+	@NotNull(message="Inventory stock is required")
 	private Integer stock;
+	@NotNull(message="Reserved stock is required")
 	private Integer  reservedStock;
 	
 	

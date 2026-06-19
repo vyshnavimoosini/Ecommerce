@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smartshop.inventory_service.entity.Inventory;
 import com.smartshop.inventory_service.service.InventoryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/inventory")
 public class InventoryController {
@@ -25,7 +27,7 @@ public class InventoryController {
 	
 	
 	@PostMapping
-	public String createInventory(@RequestBody Inventory inventory) {
+	public String createInventory(@Valid @RequestBody Inventory inventory) {
 
 
 		return inventoryService.createInventory(inventory);
@@ -66,7 +68,7 @@ public class InventoryController {
 	
 	
     @PutMapping("/{inventoryId}")
-	public Inventory updateInventory(@PathVariable long inventoryId, @RequestBody Inventory inventoryDetails) {
+	public Inventory updateInventory(@PathVariable long inventoryId, @Valid  @RequestBody Inventory inventoryDetails) {
 
 		
 

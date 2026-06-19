@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -17,14 +19,21 @@ import lombok.Data;
 public class Payment {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@NotNull
 	private long paymentId;
 	private long orderId;
+	@NotNull(message="PaymentAmount is required")
 	private BigDecimal paymentAmount;
+	@NotBlank(message="PaymentStatus is required")
 	private String paymentStatus;
+	@NotBlank(message="PaymentMethod is required")
 	private String paymentMethod;
+	@NotBlank(message="Payment Gateway is required")
 	private String gateway;
+	@NotBlank(message="gatewayId is required")
 	private String gatewayId;
+	@NotBlank(message="idempotencyKey is required")
 	private String idempotencyKey;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;

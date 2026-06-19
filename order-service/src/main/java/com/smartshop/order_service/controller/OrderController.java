@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smartshop.order_service.entity.Order;
 import com.smartshop.order_service.service.OrderService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/orders")
 public class OrderController {
@@ -25,7 +27,7 @@ public class OrderController {
 	
 	
 	@PostMapping
-	public String createOrder(@RequestBody Order order) {
+	public String createOrder(@Valid @RequestBody Order order) {
 
 		orderService.createOrder(order);
 
@@ -67,7 +69,7 @@ public class OrderController {
 	}
     
 	@PutMapping("/{orderId}")
-	public Order updateOrder(@PathVariable long orderId, @RequestBody Order orderDetails) {
+	public Order updateOrder(@PathVariable long orderId, @Valid @RequestBody Order orderDetails) {
 
 		
 		return orderService.updateOrder(orderId,orderDetails);

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smartshop.product_service.entity.Product;
 import com.smartshop.product_service.service.ProductService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
@@ -25,11 +27,11 @@ public class ProductController {
 	ProductService productService;
 
 	@PostMapping
-	public String saveProduct(@RequestBody Product product) {
+	public String saveProduct(@Valid @RequestBody Product product) {
 		return productService.saveProduct(product);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{productId}")
 	public Product getByProductId(@PathVariable long productId) {
 
 		return productService.getByProductId(productId);
@@ -63,17 +65,17 @@ public class ProductController {
 		return productService.findAll();
 	}
 
-	@PutMapping("/{id}")
-	public Product updateProduct(@PathVariable long id, @RequestBody Product productDetails) {
+	@PutMapping("/{productId}")
+	public Product updateProduct(@PathVariable long id, @Valid @RequestBody Product productDetails) {
 
 		return productService.updateProduct(id, productDetails);
 
 	}
 
-	@DeleteMapping("/{id}")
-	public String deleteByProductId(@PathVariable long id) {
+	@DeleteMapping("/{productId}")
+	public String deleteByProductId(@PathVariable long productId) {
 
-		productService.deleteByProductId(id);
+		productService.deleteByProductId(productId);
 
 		return "Product is deleted";
 

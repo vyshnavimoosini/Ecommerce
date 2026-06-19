@@ -15,15 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smartshop.user_service.entity.User;
 import com.smartshop.user_service.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1//user")
 public class UserController {
 
 	@Autowired
 	UserService userService;
 
 	@PostMapping
-	public String saveUser(@RequestBody User user) {
+	public String saveUser(@Valid @RequestBody User user) {
 
 		return userService.saveUser(user);
 	}
@@ -54,7 +56,7 @@ public class UserController {
 	}
 
 	@PutMapping("/{id}")
-	public User updateUserDetails(@PathVariable Long id, @RequestBody User userDetails) {
+	public User updateUserDetails(@PathVariable Long id, @Valid @RequestBody User userDetails) {
 
 		return userService.updateUserDetails(id, userDetails);
 	}

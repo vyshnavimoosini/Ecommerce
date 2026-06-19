@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smartshop.payment_service.entity.Payment;
 import com.smartshop.payment_service.service.PaymentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/payments")
 public class PaymentController {
@@ -25,7 +27,7 @@ public class PaymentController {
 	PaymentService paymentService;
 	
 	@PostMapping
-	public String savePayment(@RequestBody Payment payment) {
+	public String savePayment(@Valid @RequestBody Payment payment) {
 
 
 		return paymentService.savePayment(payment);
@@ -63,7 +65,7 @@ public class PaymentController {
 	}
 	
 	@PutMapping("/{paymentId}")
-	public Payment updatePaymentStatus(@PathVariable Long paymentId, @RequestBody Payment paymentDetails) {
+	public Payment updatePaymentStatus(@PathVariable Long paymentId, @Valid @RequestBody Payment paymentDetails) {
 	
 		
 		
